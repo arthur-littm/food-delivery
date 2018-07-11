@@ -1,9 +1,17 @@
+require "csv"
+
 class BaseRepository
   def initialize(csv_file)
     @csv_file = csv_file
     @elements = [] # Array of element instances
     @next_id = 1
     load_csv if File.exist?(@csv_file)
+  end
+
+  def find(id)
+    @elements.find do |element|
+      element.id == id
+    end
   end
 
   def add(element)

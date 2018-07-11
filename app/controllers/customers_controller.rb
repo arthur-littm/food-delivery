@@ -1,9 +1,9 @@
-require_relative '../views/customers_view'
+require_relative '../views/view'
 
 class CustomersController
   def initialize(customer_repository)
     @customer_repository = customer_repository
-    @view = CustomersView.new
+    @view = View.new
   end
 
   def add
@@ -19,6 +19,6 @@ class CustomersController
 
   def list
     customers = @customer_repository.all
-    @view.display(customers)
+    @view.display_customers(customers)
   end
 end

@@ -3,7 +3,9 @@
 #   ruby app.rb
 
 require_relative 'app/repositories/customer_repository'
+require_relative 'app/repositories/order_repository'
 require_relative 'app/controllers/customers_controller'
+require_relative 'app/controllers/orders_controller'
 require_relative 'app/controllers/session_controller'
 require_relative 'app/repositories/meal_repository'
 require_relative 'app/repositories/employee_repository'
@@ -22,5 +24,9 @@ employees_csv = 'data/employees.csv'
 employee_repository = EmployeeRepository.new(employees_csv)
 session_controller = SessionController.new(employee_repository)
 
-router = Router.new(meals_controller, customers_controller, session_controller)
+orders_csv = 'data/orders.csv'
+order_repository = OrderRepository.new(orders_csv, meal_repository, employee_repository, customer_repository)
+orders_controller = OrdersController.new(order_repository, meal_repository, customer_repository, employee_repository)
+
+router = Router.new(meals_controller, customers_controller, session_controller, orders_controller)
 router.run

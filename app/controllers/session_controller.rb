@@ -1,8 +1,8 @@
-require_relative "../views/base_view"
+require_relative "../views/view"
 
 class SessionController
   def initialize(employee_repository)
-    @view = BaseView.new
+    @view = View.new
     @employee_repository = employee_repository
   end
 
